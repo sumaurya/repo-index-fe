@@ -14,6 +14,7 @@ const httpOptions = {
     providedIn: 'root',
   })
 export class RepositoryService {
+private displayRepository: boolean = true;
 private apiUrl = 'http://localhost:8080/availableRepositories';
 private addApiUrl = 'http://localhost:8080/addRepository';
 
@@ -38,5 +39,14 @@ constructor(private http: HttpClient) {
   let repository = new Repository(0, repoName, url);
   console.log("2");
   return this.http.post<Repository[]>(this.addApiUrl, JSON.stringify(repository), httpOptions);
+ }
+
+ public getChangedDisplayRepository(): boolean {
+  this.displayRepository = this.displayRepository ? false : true;
+  return this.displayRepository;
+ }
+
+ public getDisplayRepository(): boolean {
+   return this.displayRepository;
  }
 }
