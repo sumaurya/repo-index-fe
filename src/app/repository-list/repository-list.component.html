@@ -1,0 +1,20 @@
+Repository Name : <input type="text" [(ngModel)] = "repoName">
+Repository URL : <input type="text" [(ngModel)] = "url">
+<button (click)="add()">Add Repository</button>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>URL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let repository of repositories">
+      <td>{{ repository.id }}</td>
+      <td>{{ repository.name }}</td>
+      <td>{{ repository.url }}</td>
+    </tr>
+  </tbody>
+</table>
