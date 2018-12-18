@@ -26,8 +26,6 @@ export class RepositoryListComponent implements OnInit {
    this.repositoryService.findAll().subscribe((res) => {
       this.repositories = res;
     }, catchError(this.handleError));
-    this.dataTable = $(this.table.nativeElement);
-    this.dataTable.dataTable();
   }
 
   add() {

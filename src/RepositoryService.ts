@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Repository } from "./Repository";
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Project } from './Project';
+import { ResponseObj } from './ResponseObj';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -14,30 +16,34 @@ const httpOptions = {
     providedIn: 'root',
   })
 export class RepositoryService {
+
 private displayRepository: boolean = true;
+
 private apiUrl = 'http://localhost:8080/availableRepositories';
+
 private addApiUrl = 'http://localhost:8080/addRepository';
+
+private getProjectsUrl = 'http://localhost:8080/fetchPackageDetails';
+
+responseObj : ResponseObj;
+
+projects : Project[];
 
 constructor(private http: HttpClient) {
  }
 
- private extractData(res: Response) {
-  console.log("6");
+ private extractRepositories(res: Response) {
   let emptyArray: Repository[] = []; 
   let body = res['repositories'];
-  console.log("7");
-  console.log(body);
   return body || emptyArray;
 }
 
  public findAll(): Observable<Repository[]>{
-  return this.http.get(this.apiUrl).pipe(map(this.extractData));
+  return this.http.get(this.apiUrl).pipe(map(this.extractRepositories));
  }
 
  public add(repoName: string, url: string): Observable<Repository[]> {
-  console.log("1");
   let repository = new Repository(0, repoName, url);
-  console.log("2");
   return this.http.post<Repository[]>(this.addApiUrl, JSON.stringify(repository), httpOptions);
  }
 
@@ -48,5 +54,18 @@ constructor(private http: HttpClient) {
 
  public getDisplayRepository(): boolean {
    return this.displayRepository;
+ }
+
+ public findAllProjects(repoId: number): Observable<Project[]> {
+  let headers = new HttpHeaders().append('Content-Type', 'application/json');
+  let params = new HttpParams().set('id', repoId.toString());
+  console.log(params);
+  return this.http.get(this.getProjectsUrl, {headers : headers, params : params}).pipe(map(this.extractProjects));
+ }
+
+ private extractProjects(res: ResponseObj) {
+  let emptyArray: Repository[] = []; 
+  let body = res['projects'];
+  return body || emptyArray;
  }
 }
