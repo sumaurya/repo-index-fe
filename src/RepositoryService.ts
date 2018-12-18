@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Project } from './Project';
 import { ResponseObj } from './ResponseObj';
+import { Version } from './Version';
+import { Author } from './Author';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -23,7 +25,11 @@ private apiUrl = 'http://localhost:8080/availableRepositories';
 
 private addApiUrl = 'http://localhost:8080/addRepository';
 
-private getProjectsUrl = 'http://localhost:8080/fetchPackageDetails';
+private getProjectsUrl = 'http://localhost:8080/fetchPackageForRepository';
+
+private getVersionsUrl = 'http://localhost:8080/fetchVersionsForPackage';
+
+private getAuthorsUrl = 'http://localhost:8080/fetchAuthorsForVersion';
 
 responseObj : ResponseObj;
 
@@ -59,13 +65,36 @@ constructor(private http: HttpClient) {
  public findAllProjects(repoId: number): Observable<Project[]> {
   let headers = new HttpHeaders().append('Content-Type', 'application/json');
   let params = new HttpParams().set('id', repoId.toString());
-  console.log(params);
   return this.http.get(this.getProjectsUrl, {headers : headers, params : params}).pipe(map(this.extractProjects));
  }
 
  private extractProjects(res: ResponseObj) {
-  let emptyArray: Repository[] = []; 
+  let emptyArray: Project[] = []; 
   let body = res['projects'];
   return body || emptyArray;
+ }
+
+ private extractVersions(res: ResponseObj) {
+  let emptyArray: Version[] = []; 
+  let body = res['versions'];
+  return body || emptyArray;
+ }
+
+ private extractAuthors(res: ResponseObj) {
+  let emptyArray: Author[] = []; 
+  let body = res['authors'];
+  return body || emptyArray;
+ }
+
+ public finadAllVersionsOfProject(packageId : number) {
+  let headers = new HttpHeaders().append('Content-Type', 'application/json');
+  let params = new HttpParams().set('id', packageId.toString());
+  return this.http.get(this.getVersionsUrl, {headers : headers, params : params}).pipe(map(this.extractVersions));
+ }
+
+ public findAuthorsForVersion(versionId : number) {
+  let headers = new HttpHeaders().append('Content-Type', 'application/json');
+  let params = new HttpParams().set('id', versionId.toString());
+  return this.http.get(this.getAuthorsUrl, {headers : headers, params : params}).pipe(map(this.extractAuthors));
  }
 }

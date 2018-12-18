@@ -9,6 +9,7 @@ import { FormsModule } from '@angular/forms';
 import { PackageListComponent } from './package-list/package-list.component';
 import { VersionListComponent } from './version-list/version-list.component';
 import { RouterModule } from '@angular/router';
+import { AuthorListComponent } from './author-list/author-list.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { RouterModule } from '@angular/router';
     RepositoryListComponent,
     PackageListComponent,
     VersionListComponent,
+    AuthorListComponent,
   ],
   imports: [
     BrowserModule,

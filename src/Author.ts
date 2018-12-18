@@ -2,7 +2,7 @@ import { Version } from './Version';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class Project {
+export class Author {
     id: number;
     name: string;
     email: string;

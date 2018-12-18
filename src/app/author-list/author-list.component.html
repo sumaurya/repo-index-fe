@@ -1,0 +1,22 @@
+<div>
+  <h3>Package Authors - </h3>
+  <table id="authorTable" class="authorTable" style="width:100%">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Version ID</th>
+        <th>Name</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let author of authors">
+          <td>{{ author.id }}</td>
+          <td>{{ author.versionId }}</td>
+          <td>{{ author.name }}</td>
+          <td>{{ author.email }}</td>
+          <!-- <a (click)="changeDisplayVersion()" [routerLink]="['/author-list', version.id]">View Versions</a> -->
+      </tr>
+    </tbody>
+  </table>
+</div>

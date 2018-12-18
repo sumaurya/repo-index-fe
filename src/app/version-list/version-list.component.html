@@ -1,3 +1,27 @@
-<p>
-  version-list works!
-</p>
+<div *ngIf="displayVersion">
+  <h3>Versions Available - </h3>
+  <table id="dataTable" class="versionTable" style="width:100%">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Project ID</th>
+        <th>Version</th>
+        <th>Licence</th>
+        <th>Depends On</th>
+        <th>URL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let version of versions">
+          <td>{{ version.id }}</td>
+          <td>{{ version.projectId }}</td>
+          <td>{{ version.version }}</td>
+          <td>{{ version.liscence }}</td>
+          <td>{{ version.dependsOn }}</td>
+          <td>{{ version.url }}</td>
+          <a (click)="changeDisplayVersion()" [routerLink]="['/author-list', version.id]">View Authors</a>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<router-outlet></router-outlet>
