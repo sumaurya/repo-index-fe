@@ -1,4 +1,5 @@
 <div>
+  <button (click)="navigateToHome()">Repository Page</button>
   <h3>Package Authors - </h3>
   <table id="authorTable" class="authorTable" style="width:100%">
     <thead>
@@ -15,7 +16,6 @@
           <td>{{ author.versionId }}</td>
           <td>{{ author.name }}</td>
           <td>{{ author.email }}</td>
-          <!-- <a (click)="changeDisplayVersion()" [routerLink]="['/author-list', version.id]">View Versions</a> -->
       </tr>
     </tbody>
   </table>

@@ -21,6 +21,7 @@ export class PackageListComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('test2');
     this.displayProject = true; 
     this.route.params.subscribe(params => {
       this.repoId = Number.parseInt(params['repoId']);
@@ -39,4 +40,7 @@ export class PackageListComponent implements OnInit {
    this.displayProject = false; 
   }
 
+  public navigateToHome() {
+    this.router.navigate(['/']);
+  }
 }

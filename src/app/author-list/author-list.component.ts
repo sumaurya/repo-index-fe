@@ -33,4 +33,7 @@ export class AuthorListComponent implements OnInit {
     }, catchError(this.handleError));
   }
 
+  public navigateToHome() {
+    this.router.navigate(['/']);
+  }
 }

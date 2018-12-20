@@ -24,6 +24,7 @@ export class RepositoryListComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    console.log('test');
    this.repositoryService.findAll().subscribe((res) => {
       this.repositories = res;
     }, catchError(this.handleError));
@@ -38,7 +39,6 @@ export class RepositoryListComponent implements OnInit {
   }
 
   refreshRepository(repoId: number) {
-    alert(repoId);
     this.repositoryService.refreshRepository(repoId).subscribe((response) => {
       alert(response['status'] + '\n' + response['packageCountNow'] + ' : to be updated.');
     }, catchError(this.handleError));

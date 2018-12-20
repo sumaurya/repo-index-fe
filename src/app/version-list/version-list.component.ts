@@ -36,4 +36,8 @@ export class VersionListComponent implements OnInit {
   public changeDisplayVersion() {
     this.displayVersion = false;
   }
+
+  public navigateToHome() {
+    this.router.navigate(['/']);
+  }
 }
