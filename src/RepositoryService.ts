@@ -31,6 +31,8 @@ private getVersionsUrl = 'http://localhost:8080/fetchVersionsForPackage';
 
 private getAuthorsUrl = 'http://localhost:8080/fetchAuthorsForVersion';
 
+private refreshRepositoryUrl = 'http://localhost:8080/updateRepository';
+
 responseObj : ResponseObj;
 
 projects : Project[];
@@ -51,6 +53,12 @@ constructor(private http: HttpClient) {
  public add(repoName: string, url: string): Observable<Repository[]> {
   let repository = new Repository(0, repoName, url);
   return this.http.post<Repository[]>(this.addApiUrl, JSON.stringify(repository), httpOptions);
+ }
+
+ public refreshRepository(repoId: number) {
+  let repository = new Repository(repoId, '', '');
+  console.log(JSON.stringify(repository));
+  return this.http.post<Repository[]>(this.refreshRepositoryUrl, JSON.stringify(repository), httpOptions);
  }
 
  public getChangedDisplayRepository(): boolean {

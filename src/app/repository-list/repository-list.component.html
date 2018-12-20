@@ -1,7 +1,7 @@
 <div *ngIf="displayRepository">
-  Repository Name : <input type="text" [(ngModel)] = "repoName">
-  Repository URL : <input type="text" [(ngModel)] = "url">
-  <button (click)="add()">Add Repository</button>
+  Repository Name : <input type="text" [(ngModel)] = "repoName"><br/>
+  Repository URL : <input type="text" [(ngModel)] = "url"><br/>
+  <button (click)="add()">Add Repository</button><br/>
 
   <table id="dataTable" class="repositoryTable" style="width:100%">
     <thead>
@@ -18,6 +18,7 @@
           <td>{{ repository.name }}</td>
           <td>{{ repository.url }}</td>
           <a (click)="changeDisplayRepository()" [routerLink]="['/project-list', repository.id]">View Packages</a>
+          <button (click)="refreshRepository(repository.id)">Refresh Repository</button>
       </tr>
     </tbody>
   </table>

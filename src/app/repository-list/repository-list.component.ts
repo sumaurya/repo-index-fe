@@ -1,8 +1,8 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { RepositoryService } from 'src/RepositoryService';
-import { HttpClient } from '@angular/common/http';
 import { Repository } from 'src/Repository';
 import { catchError } from 'rxjs/operators';
+import { Router, ActivatedRoute } from '@angular/router';
 
 declare var $;
 
@@ -20,7 +20,8 @@ export class RepositoryListComponent implements OnInit {
   repositories: Repository[];
   displayRepository:boolean = true;
 
-  constructor(private repositoryService: RepositoryService, private http: HttpClient) { }
+  constructor(private repositoryService: RepositoryService, private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
    this.repositoryService.findAll().subscribe((res) => {
@@ -33,6 +34,13 @@ export class RepositoryListComponent implements OnInit {
       return this.repositoryService.findAll().subscribe((res) => {
         this.repositories = res;
       });
+    }, catchError(this.handleError));
+  }
+
+  refreshRepository(repoId: number) {
+    alert(repoId);
+    this.repositoryService.refreshRepository(repoId).subscribe((response) => {
+      alert(response['status'] + '\n' + response['packageCountNow'] + ' : to be updated.');
     }, catchError(this.handleError));
   }
 
