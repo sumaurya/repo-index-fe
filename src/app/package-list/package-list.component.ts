@@ -16,17 +16,35 @@ export class PackageListComponent implements OnInit {
   projects: Project[];
   responseObj: ResponseObj;
   
+  settings = {
+    columns: {
+      id: {
+        title: 'ID'
+      },
+      title: {
+        title: 'Title'
+      },
+      repositoryId: {
+        title: 'Repository ID'
+      },
+      description: {
+        title: 'Description'
+      }
+    },
+    actions: { delete: false, edit:false, add: false },
+
+  };
+
   constructor(private repositoryService: RepositoryService, private route: ActivatedRoute,
     private router: Router) { 
   }
 
   ngOnInit() {
-    console.log('test2');
     this.displayProject = true; 
     this.route.params.subscribe(params => {
       this.repoId = Number.parseInt(params['repoId']);
     });
-    this.repositoryService.findAllProjects(this.repoId).subscribe((res) => {
+    this.repositoryService.findAllProjects(this.repoId).subscribe((res : Project[]) => {
       this.projects = res;
     }, catchError(this.handleError));
   }

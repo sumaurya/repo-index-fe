@@ -1,27 +1,22 @@
-# AngularRepoIndex
+Application Start Instructions -
+1) from the project directory, execute 
+ng serve --prod
+2) In browser, navigate to http://localhost:4200
+3) Start by adding repository and than keep on going.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.3.
 
-## Development server
+Limitations of the system - 
+The pair of Applications has few limitations - 
+1) only http repository links are supported not any other protocol.
+e.g use following repository to test -
+name - iitm
+url - http://ftp.iitm.ac.in/cran/src/contrib/
+2) there few UI bugs like, the repositoryListComponent is loaded twice on first load. And one of the component html is visible accross all pages.
+3) styling is not proper
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+FYI : I have not got the opportunity to work on front-end yet. I request you to please consider this point as well.
+I found this task a good learning opportunity. I had also prepared another version using ng2-smart-table which has more functionality but it also had more bugs. I would love to discuss that as well if I get the opportunity.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Please reach out to me on linked-in/email for any clarification -
+email : mauryasuraj0914@gmail.com
+linkedin - https://www.linkedin.com/in/suraj-maurya-9976a8110/
